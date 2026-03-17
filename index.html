@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SF Crime: Two Decades of Data</title>
+
   <style>
     :root {
       --bg: #1a1a2e;
@@ -12,13 +13,13 @@
       --text: #f5f7fa;
       --muted: #b8c1d1;
       --accent: #16c79a;
-      --border: rgba(22, 199, 154, 0.18);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --border: rgba(22,199,154,0.2);
       --radius: 18px;
-      --max-width: 1100px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -28,14 +29,17 @@
     }
 
     .container {
-      width: min(100% - 2rem, var(--max-width));
-      margin: 0 auto;
+      width: min(100% - 2rem, 1100px);
+      margin: auto;
     }
+
+    /* ---------- HEADER ---------- */
 
     header {
       padding: 5rem 0 3rem;
       border-bottom: 1px solid var(--border);
-      background: radial-gradient(circle at top, rgba(22,199,154,0.1), transparent);
+      background:
+        radial-gradient(circle at top right, rgba(22,199,154,0.15), transparent 30%);
     }
 
     .eyebrow {
@@ -47,12 +51,16 @@
     h1 {
       font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: 1rem;
+      letter-spacing: -0.02em;
     }
 
     .intro {
       color: var(--muted);
-      max-width: 700px;
+      max-width: 720px;
+      line-height: 1.6;
     }
+
+    /* ---------- SECTION ---------- */
 
     main {
       padding: 3rem 0;
@@ -70,22 +78,27 @@
       gap: 1.5rem;
     }
 
+    /* ---------- CARD ---------- */
+
     .card {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       padding: 1.6rem;
       border-radius: var(--radius);
       background: linear-gradient(145deg, #22223b, #1c1c33);
       border: 1px solid var(--border);
-      overflow: hidden;
       transition: all 0.25s ease;
+      overflow: hidden;
     }
 
-    /* subtle glow */
+    /* Glow effect */
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(22,199,154,0.15), transparent);
+      background: radial-gradient(circle at top right, rgba(22,199,154,0.2), transparent);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -97,11 +110,11 @@
     .card:hover {
       transform: translateY(-8px) scale(1.02);
       border-color: rgba(22,199,154,0.4);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
     }
 
     .card h3 {
-      margin: 0 0 0.6rem;
+      margin: 0 0 0.5rem;
       font-size: 1.2rem;
     }
 
@@ -112,12 +125,12 @@
     }
 
     .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
       color: var(--accent);
       font-weight: 600;
       font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     .card-link span {
@@ -128,39 +141,50 @@
       transform: translateX(6px);
     }
 
-    /* highlight first card slightly */
-    .card.featured {
-      border: 1px solid rgba(22,199,154,0.35);
+    /* Featured card */
+    .featured {
+      border: 1px solid rgba(22,199,154,0.4);
       background: linear-gradient(145deg, #232347, #1c1c33);
     }
 
+    /* ---------- FOOTER ---------- */
+
     footer {
       padding: 2rem 0;
+      text-align: center;
       color: var(--muted);
       font-size: 0.9rem;
-      text-align: center;
     }
 
+    /* ---------- MOBILE ---------- */
+
     @media (max-width: 600px) {
-      header { padding: 3.5rem 0 2rem; }
+      header {
+        padding: 3.5rem 0 2rem;
+      }
     }
+
   </style>
 </head>
+
 <body>
 
 <header>
   <div class="container">
     <div class="eyebrow">Data Science Portfolio</div>
+
     <h1>SF Crime: Two Decades of Data</h1>
+
     <p class="intro">
       This portfolio explores long-term patterns in San Francisco crime data through interactive visualizations and distribution analysis.
-      Together, these projects highlight how time and category-level behavior reveal meaningful trends across two decades.
+      Together, these projects reveal how time and crime categories evolve across two decades of reported incidents.
     </p>
   </div>
 </header>
 
 <main>
   <div class="container">
+
     <h2 class="section-title">Interactive Analysis</h2>
 
     <div class="grid">
@@ -168,7 +192,7 @@
       <article class="card featured">
         <div>
           <h3>Hourly Crime Patterns I</h3>
-          <p>Explore how crime varies across the day with an interactive temporal visualization.</p>
+          <p>Interactive visualization of how crime varies across the hours of the day.</p>
         </div>
         <a class="card-link" href="visualizations/crime_hourly_interactive1.html">
           View plot <span>→</span>
@@ -178,7 +202,7 @@
       <article class="card">
         <div>
           <h3>Hourly Crime Patterns II</h3>
-          <p>Compare hourly distributions with an alternative interactive design.</p>
+          <p>Alternative interactive view for comparing hourly crime distributions.</p>
         </div>
         <a class="card-link" href="visualizations/crime_hourly_interactive2.html">
           View plot <span>→</span>
@@ -188,7 +212,7 @@
       <article class="card">
         <div>
           <h3>Crime Distribution</h3>
-          <p>Understand how crime types are distributed across categories and frequency.</p>
+          <p>Explore how crime incidents are distributed across categories and frequencies.</p>
         </div>
         <a class="card-link" href="visualizations/distribution.html">
           View analysis <span>→</span>
@@ -196,11 +220,12 @@
       </article>
 
     </div>
+
   </div>
 </main>
 
 <footer>
-  Built as a clean, interactive portfolio for San Francisco crime data analysis.
+  Built as a clean, interactive portfolio for San Francisco crime analysis.
 </footer>
 
 </body>
