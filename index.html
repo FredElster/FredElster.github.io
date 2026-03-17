@@ -1,14 +1,225 @@
-> <!DOCTYPE html>
-> <html>
-> <head>
->     <title>My Data Viz Site</title>
-> </head>
-> <body>
->     <h1>Hello World!</h1>
->    <p>This site will soon contain interactive data visualizations about crime in San Francisco.</p>
->
->    <iframe src="visualizations/crime_hourly_interactive1.html" width="100%" height="600" frameborder="0"></iframe>
->    <iframe src="visualizations/crime_hourly_interactive2.html" width="100%" height="600" frameborder="0"></iframe>
->    <iframe src="visualizations/distribution.html" width="100%" height="600" frameborder="0"></iframe>
-> </body>
-> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SF Crime: Two Decades of Data</title>
+  <style>
+    :root {
+      --bg: #1a1a2e;
+      --panel: #22223b;
+      --panel-hover: #2a2a45;
+      --text: #f5f7fa;
+      --muted: #b8c1d1;
+      --accent: #16c79a;
+      --border: rgba(22, 199, 154, 0.18);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+      --radius: 18px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #1a1a2e 0%, #171729 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      width: 100%;
+      padding: 5rem 0 3rem;
+      background:
+        radial-gradient(circle at top right, rgba(22, 199, 154, 0.15), transparent 30%),
+        radial-gradient(circle at top left, rgba(22, 199, 154, 0.08), transparent 25%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      background: rgba(22, 199, 154, 0.06);
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .intro {
+      max-width: 760px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    main {
+      padding: 2.5rem 0 4rem;
+    }
+
+    .section-title {
+      margin: 0 0 1.25rem;
+      font-size: 1.25rem;
+      color: var(--text);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 210px;
+      padding: 1.4rem;
+      background: rgba(34, 34, 59, 0.95);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-6px);
+      background: var(--panel-hover);
+      border-color: rgba(22, 199, 154, 0.35);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.34);
+    }
+
+    .card h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+
+    .card p {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    .card-link span {
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .card-link span,
+    .card:focus-within .card-link span {
+      transform: translateX(4px);
+    }
+
+    footer {
+      padding: 0 0 2rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 4rem 0 2.5rem;
+      }
+
+      .card {
+        min-height: auto;
+      }
+
+      .intro {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="eyebrow">Data Science Portfolio</div>
+      <h1>SF Crime: Two Decades of Data</h1>
+      <p class="intro">
+        This portfolio explores long-term patterns in San Francisco crime data through interactive visualizations and distribution analysis.
+        Together, these projects highlight how time, frequency, and category-level behavior can reveal meaningful changes across two decades of reported incidents.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 class="section-title">Visualizations</h2>
+      <div class="grid">
+        <article class="card">
+          <div>
+            <h3>Hourly Crime Patterns I</h3>
+            <p>Interactive view of how reported crime shifts across the hours of the day.</p>
+          </div>
+          <a class="card-link" href="images/visualizations/crime_hourly_interactive1.html">
+            Open visualization <span>→</span>
+          </a>
+        </article>
+
+        <article class="card">
+          <div>
+            <h3>Hourly Crime Patterns II</h3>
+            <p>A second interactive take on hourly trends, built for comparison and exploration.</p>
+          </div>
+          <a class="card-link" href="images/visualizations/crime_hourly_interactive2.html">
+            Open visualization <span>→</span>
+          </a>
+        </article>
+
+        <article class="card">
+          <div>
+            <h3>Crime Distribution Analysis</h3>
+            <p>Overview of how incidents are distributed across categories, counts, and reporting patterns.</p>
+          </div>
+          <a class="card-link" href="images/visualizations/distribution.html">
+            Open analysis <span>→</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      Built as a single-page portfolio for San Francisco crime analysis.
+    </div>
+  </footer>
+</body>
+</html>
