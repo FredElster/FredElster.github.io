@@ -79,14 +79,6 @@
       opacity: 0.75;
     }
 
-    .figure-media img {
-      width: 100%;
-      height: 620px;
-      margin: 0 auto;
-      display: block;
-      object-fit: contain;
-    }
-
     .hero {
       min-height: 72vh;
       display: flex;
@@ -244,12 +236,17 @@
 
     .figure-media img,
     .figure-media iframe {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
       border: 1px solid rgba(22, 199, 154, 0.14);
       border-radius: 18px;
       background: #22223b;
       object-fit: contain;
+    }
+
+    .figure-media img {
+      width: auto;
+      max-width: 100%;
     }
 
     .figure-media iframe {
@@ -341,19 +338,20 @@
           <p class="muted">
             The analysis in this report is based on publicly available information from the San Francisco Open Data Portal, under the Public Safety section. One of the key resources offered to residents, researchers, and policymakers is the dataset “Police Department Incident Report: 2018 to Present,” and “Police Department Incident Reports Historical 2003 to May 2018.”
           </p>
-            <figure class="figure-card">
-              <div class="figure-top">
-                <div class="figure-label">Static Chart</div>
-                <div class="figure-type">PNG image</div>
-              </div>
-              <div class="figure-media">
-                <img src="images/overview.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
-              </div>
-              <figcaption>
-                <strong>Figure 1.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
-              </figcaption>
-          </figure>
         </div>
+
+        <figure class="figure-card">
+          <div class="figure-top">
+            <div class="figure-label">Static Chart</div>
+            <div class="figure-type">PNG image</div>
+          </div>
+          <div class="figure-media">
+            <img src="images/overview.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
+          </div>
+          <figcaption>
+            <strong>Figure 1.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
+          </figcaption>
+        </figure>
 
         <div class="measure">
           <h2>The overall decline is real, but it is driven mostly by a few large categories</h2>
