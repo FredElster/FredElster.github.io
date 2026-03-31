@@ -51,7 +51,9 @@
 
     .container {
       width: min(100% - 2rem, var(--content-width));
+      max-width: var(--content-width);
       margin: 0 auto;
+      padding: 0 1rem;
     }
 
     .measure {
@@ -78,17 +80,17 @@
     }
 
     .figure-media img {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    display: block;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      display: block;
     }
 
     .hero {
-      min-height: 84vh;
+      min-height: 72vh;
       display: flex;
       align-items: center;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
       overflow: hidden;
     }
@@ -98,15 +100,15 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 85% 20%, rgba(22, 199, 154, 0.12), transparent 18%),
-        radial-gradient(circle at 10% 85%, rgba(22, 199, 154, 0.06), transparent 18%);
+        radial-gradient(circle at 85% 20%, rgba(22, 199, 154, 0.1), transparent 18%),
+        radial-gradient(circle at 10% 85%, rgba(22, 199, 154, 0.05), transparent 18%);
       pointer-events: none;
     }
 
     .hero-inner {
       position: relative;
       z-index: 1;
-      padding: 4rem 0;
+      padding: 4.5rem 0;
     }
 
     h1 {
@@ -214,7 +216,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 1rem 1.25rem;
+      padding: 1.2rem 1.5rem;
       border-bottom: 1px solid var(--border);
       background: rgba(255,255,255,0.02);
     }
@@ -233,7 +235,7 @@
     }
 
     .figure-media {
-      padding: 1rem 1.25rem 0.5rem;
+      padding: 1rem 1.5rem 1.25rem;
     }
 
     .figure-media img,
@@ -321,7 +323,7 @@
           <div class="eyebrow">Dataset</div>
           <h2>How We Collected and Organized the Crime Information</h2>
           <p class="muted">
-            he analysis in this report is based on publicly available information from the San Francisco Open Data Portal, under the Public Safety section. One of the key resources offered to residents, researchers, and policymakers is the dataset “Police Department Incident Report: 2018 to Present.”, and “Police Department Incident Reports Historical 2003 to May 2018.”
+            The analysis in this report is based on publicly available information from the San Francisco Open Data Portal, under the Public Safety section. One of the key resources offered to residents, researchers, and policymakers is the dataset “Police Department Incident Report: 2018 to Present,” and “Police Department Incident Reports Historical 2003 to May 2018.”
           </p>
             <figure class="figure-card">
               <div class="figure-top">
@@ -336,29 +338,7 @@
               </figcaption>
           </figure>
         </div>
-         <h2>The overall decline is real, but it is driven mostly by a few large categories</h2>
-          <p class="muted">
-            Looking first at annual totals helps establish the broad story. The most important point is that property crime, especially larceny and theft, dominates the overall volume, which means changes in these categories shape the citywide trend more than smaller categories do.
-          </p>
-        </div>
 
-        <figure class="figure-card">
-          <div class="figure-top">
-            <div class="figure-label">Static Chart</div>
-            <div class="figure-type">PNG image</div>
-          </div>
-          <div class="figure-media">
-            <img src="images/counts.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
-          </div>
-          <figcaption>
-            <strong>Figure 1.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
         <div class="measure">
           <h2>The overall decline is real, but it is driven mostly by a few large categories</h2>
           <p class="muted">
@@ -375,7 +355,7 @@
             <img src="images/counts.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
           </div>
           <figcaption>
-            <strong>Figure 1.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
+            <strong>Supporting chart.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
           </figcaption>
         </figure>
       </div>
