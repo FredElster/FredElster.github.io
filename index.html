@@ -8,224 +8,529 @@
   <style>
     :root {
       --bg: #1a1a2e;
-      --panel: #22223b;
+      --bg-soft: #171729;
+      --panel: rgba(34, 34, 59, 0.88);
+      --panel-strong: rgba(34, 34, 59, 0.96);
       --panel-hover: #2f2f52;
       --text: #f5f7fa;
       --muted: #b8c1d1;
       --accent: #16c79a;
+      --accent-soft: rgba(22,199,154,0.12);
       --border: rgba(22,199,154,0.2);
-      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --content-width: 1180px;
+      --copy-width: 760px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Inter, system-ui, sans-serif;
-      background: var(--bg);
       color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(22,199,154,0.08), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
-      width: min(100% - 2rem, 1100px);
-      margin: auto;
+      width: min(100% - 2rem, var(--content-width));
+      margin: 0 auto;
     }
 
-    /* ---------- HEADER ---------- */
-
-    header {
-      padding: 5rem 0 3rem;
-      border-bottom: 1px solid var(--border);
-      background:
-        radial-gradient(circle at top right, rgba(22,199,154,0.15), transparent 30%);
+    .copy {
+      width: min(100%, var(--copy-width));
     }
 
     .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--accent);
       margin-bottom: 1rem;
       font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.7;
     }
 
-    .intro {
-      color: var(--muted);
-      max-width: 720px;
-      line-height: 1.6;
-    }
-
-    /* ---------- SECTION ---------- */
-
-    main {
-      padding: 3rem 0;
-    }
-
-    .section-title {
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
-      color: var(--accent);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* ---------- CARD ---------- */
-
-    .card {
-      position: relative;
+    .hero {
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1.6rem;
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, #22223b, #1c1c33);
-      border: 1px solid var(--border);
-      transition: all 0.25s ease;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
       overflow: hidden;
     }
 
-    /* Glow effect */
-    .card::before {
+    .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(22,199,154,0.2), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      background:
+        radial-gradient(circle at 85% 18%, rgba(22,199,154,0.12), transparent 18%),
+        radial-gradient(circle at 12% 82%, rgba(22,199,154,0.08), transparent 18%);
+      pointer-events: none;
     }
 
-    .card:hover::before {
-      opacity: 1;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 2.5rem;
+      align-items: center;
+      width: 100%;
+      padding: 4rem 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(22,199,154,0.4);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    h1 {
+      margin: 0 0 1.25rem;
+      font-size: clamp(3rem, 6vw, 5.25rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
     }
 
-    .card h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      margin: 0 0 1.5rem;
+    .hero p {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 1.08rem;
+      max-width: 700px;
+      margin: 0 0 2rem;
     }
 
-    .card-link {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.95rem;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.75rem;
+    }
+
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.55rem;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: 0.25s ease;
     }
 
-    .card-link span {
-      transition: transform 0.2s ease;
+    .btn-primary {
+      background: var(--accent);
+      color: #0f1720;
+      border-color: transparent;
     }
 
-    .card:hover .card-link span {
-      transform: translateX(6px);
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(22,199,154,0.28);
     }
 
-    /* Featured card */
-    .featured {
-      border: 1px solid rgba(22,199,154,0.4);
-      background: linear-gradient(145deg, #232347, #1c1c33);
+    .btn-secondary {
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
     }
 
-    /* ---------- FOOTER ---------- */
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(22,199,154,0.34);
+    }
 
-    footer {
-      padding: 2rem 0;
-      text-align: center;
+    .hero-panel {
+      background: linear-gradient(145deg, rgba(34,34,59,0.98), rgba(28,28,51,0.96));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 1.4rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
       color: var(--muted);
       font-size: 0.9rem;
     }
 
-    /* ---------- MOBILE ---------- */
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
 
-    @media (max-width: 600px) {
-      header {
-        padding: 3.5rem 0 2rem;
+    .metric {
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(22,199,154,0.12);
+    }
+
+    .metric span {
+      display: block;
+    }
+
+    .metric .value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .metric .label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+      border-bottom: 1px solid rgba(22,199,154,0.08);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(280px, 1.18fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .section h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .section p {
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+
+    .story-card,
+    .viz-card {
+      background: linear-gradient(145deg, rgba(34,34,59,0.96), rgba(28,28,51,0.92));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .story-card {
+      padding: 1.5rem;
+      position: sticky;
+      top: 1.25rem;
+    }
+
+    .story-card .kicker {
+      display: inline-block;
+      margin-bottom: 0.9rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .story-card ul {
+      margin: 1rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    .story-card li + li {
+      margin-top: 0.55rem;
+    }
+
+    .viz-card {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .viz-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(22,199,154,0.34);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.42);
+    }
+
+    .viz-top {
+      padding: 1rem 1.15rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .viz-tag {
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .viz-status {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .viz-body {
+      padding: 1.3rem 1.25rem 1.35rem;
+    }
+
+    .viz-body h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1.3rem;
+    }
+
+    .viz-body p {
+      margin: 0 0 1.2rem;
+      color: var(--muted);
+    }
+
+    .viz-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .viz-link span {
+      transition: transform 0.2s ease;
+    }
+
+    .viz-card:hover .viz-link span {
+      transform: translateX(5px);
+    }
+
+    .story-start {
+      scroll-margin-top: 24px;
+    }
+
+    .footer {
+      padding: 2.5rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-grid,
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-card {
+        position: static;
       }
     }
 
+    @media (max-width: 640px) {
+      .hero-grid {
+        padding: 3.5rem 0;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      h1 {
+        font-size: clamp(2.45rem, 12vw, 3.75rem);
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
-</head>s
+</head>
 
 <body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="copy">
+        <div class="eyebrow">Assignment 2</div>
+        <h1>SF Crime: Two Decades of Data</h1>
+        <p>
+          Two decades of police data reveal clear patterns: most crime concentrates in just a few categories, some neighborhoods improved dramatically while others stayed challenging, and the shape of crime changed in surprising ways. Here’s what the numbers really tell us — in plain language.
+        </p>
 
-<header>
-  <div class="container">
-    <div class="eyebrow">Data Science Portfolio</div>
-
-    <h1>SF Crime: Two Decades of Data</h1>
-
-    <p class="intro">
-      Two decades of police data reveal clear patterns: most crime concentrates in just a few categories, some neighborhoods improved dramatically while others stayed challenging, and the shape of crime changed in surprising ways. Here’s what the numbers really tell us — in plain language.
-    </p>
-  </div>
-</header>
-
-<main>
-  <div class="container">
-
-    <h2 class="section-title">Interactive Analysis</h2>
-
-    <div class="grid">
-
-      <article class="card featured">
-        <div>
-          <h3>Hourly Crime Patterns I</h3>
-          <p>Interactive visualization of how crime varies across the hours of the day.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#story-start">Begin the Story →</a>
+          <a class="btn btn-secondary" href="visualizations/distribution.html">Jump to a visualization</a>
         </div>
-        <a class="card-link" href="visualizations/crime_hourly_interactive1.html">
-          View plot <span>→</span>
-        </a>
-      </article>
+      </div>
 
-      <article class="card">
-        <div>
-          <h3>Hourly Crime Patterns II</h3>
-          <p>Alternative interactive view for comparing hourly crime distributions.</p>
+      <aside class="hero-panel" aria-label="Project summary">
+        <div class="panel-header">
+          <span>Project Overview</span>
+          <span>San Francisco, 2003–2026</span>
         </div>
-        <a class="card-link" href="visualizations/crime_hourly_interactive2.html">
-          View plot <span>→</span>
-        </a>
-      </article>
 
-      <article class="card">
-        <div>
-          <h3>Crime Distribution</h3>
-          <p>Explore how crime incidents are distributed across categories and frequencies.</p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <span class="value">20+ years</span>
+            <span class="label">of police-reported incidents</span>
+          </div>
+          <div class="metric">
+            <span class="value">3 views</span>
+            <span class="label">to explore time, patterns, and categories</span>
+          </div>
+          <div class="metric">
+            <span class="value">Dark theme</span>
+            <span class="label">consistent across the whole portfolio</span>
+          </div>
+          <div class="metric">
+            <span class="value">Interactive</span>
+            <span class="label">designed for exploration, not static reading</span>
+          </div>
         </div>
-        <a class="card-link" href="visualizations/distribution.html">
-          View analysis <span>→</span>
-        </a>
-      </article>
-
+      </aside>
     </div>
+  </header>
 
-  </div>
-</main>
+  <main>
+    <section id="story-start" class="section story-start">
+      <div class="container section-grid">
+        <div class="story-card">
+          <div class="kicker">Start here</div>
+          <h2>The Big Picture</h2>
+          <p>
+            This portfolio is structured like a short visual story. Each section introduces one analytical angle and links directly to the corresponding interactive page.
+          </p>
+          <ul>
+            <li>Start with the overall distribution of crime categories.</li>
+            <li>Then explore the hourly rhythm of incidents in two alternative views.</li>
+            <li>Use the linked pages to inspect the data in more detail.</li>
+          </ul>
+        </div>
 
-<footer>
-  Built as a clean, interactive portfolio for San Francisco crime analysis.
-</footer>
+        <article class="viz-card">
+          <div class="viz-top">
+            <span class="viz-tag">Distribution</span>
+            <span class="viz-status">Overview view</span>
+          </div>
+          <div class="viz-body">
+            <h3>Crime Distribution</h3>
+            <p>
+              Explore how reported crime is distributed across categories and frequencies. This is the fastest way to see which incident types dominate the long-run picture.
+            </p>
+            <a class="viz-link" href="visualizations/distribution.html">
+              View analysis <span>→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="container section-grid">
+        <div class="story-card">
+          <div class="kicker">Time of day</div>
+          <h2>How Crime Moves Through the Day</h2>
+          <p>
+            Crime is not evenly spread across the clock. This view highlights when activity intensifies and when incidents are relatively rare.
+          </p>
+          <ul>
+            <li>Identify peaks during busy hours.</li>
+            <li>See whether the pattern is concentrated or broadly spread.</li>
+            <li>Use hover interactions to inspect exact values.</li>
+          </ul>
+        </div>
+
+        <article class="viz-card">
+          <div class="viz-top">
+            <span class="viz-tag">Hourly pattern</span>
+            <span class="viz-status">Interactive view I</span>
+          </div>
+          <div class="viz-body">
+            <h3>Hourly Crime Patterns I</h3>
+            <p>
+              Interactive visualization of how crime varies across the hours of the day, designed to make the daily rhythm of reported incidents easy to read.
+            </p>
+            <a class="viz-link" href="visualizations/crime_hourly_interactive1.html">
+              View plot <span>→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section-grid">
+        <div class="story-card">
+          <div class="kicker">Compare views</div>
+          <h2>A Second Way to Read the Same Pattern</h2>
+          <p>
+            Different chart designs surface different aspects of the same data. This alternative view is useful when you want to compare how presentation affects interpretation.
+          </p>
+          <ul>
+            <li>Cross-check the same hourly signal in a new design.</li>
+            <li>Compare clarity, emphasis, and readability.</li>
+            <li>Use it as a companion to the first hourly chart.</li>
+          </ul>
+        </div>
+
+        <article class="viz-card">
+          <div class="viz-top">
+            <span class="viz-tag">Hourly pattern</span>
+            <span class="viz-status">Interactive view II</span>
+          </div>
+          <div class="viz-body">
+            <h3>Hourly Crime Patterns II</h3>
+            <p>
+              Alternative interactive view for comparing hourly crime distributions and evaluating how the same pattern reads across different visual designs.
+            </p>
+            <a class="viz-link" href="visualizations/crime_hourly_interactive2.html">
+              View plot <span>→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Built as a story-driven, interactive portfolio for San Francisco crime analysis.
+    </div>
+  </footer>
 </body>
 </html>
