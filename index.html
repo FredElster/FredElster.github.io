@@ -227,7 +227,8 @@
     }
 
     .story-card,
-    .viz-card {
+    .viz-card,
+    .method-card {
       background: linear-gradient(145deg, rgba(34,34,59,0.96), rgba(28,28,51,0.92));
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -241,7 +242,8 @@
       top: 1.25rem;
     }
 
-    .story-card .kicker {
+    .story-card .kicker,
+    .method-card .kicker {
       display: inline-block;
       margin-bottom: 0.9rem;
       padding: 0.35rem 0.7rem;
@@ -254,13 +256,15 @@
       text-transform: uppercase;
     }
 
-    .story-card ul {
+    .story-card ul,
+    .method-card ul {
       margin: 1rem 0 0;
       padding-left: 1.1rem;
       color: var(--muted);
     }
 
-    .story-card li + li {
+    .story-card li + li,
+    .method-card li + li {
       margin-top: 0.55rem;
     }
 
@@ -319,6 +323,33 @@
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
     }
 
+    .method-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .method-card {
+      padding: 1.6rem;
+    }
+
+    .method-note {
+      padding: 1.25rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(22,199,154,0.12);
+    }
+
+    .method-note h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.15rem;
+    }
+
+    .method-note p:last-child {
+      margin-bottom: 0;
+    }
+
     .story-start {
       scroll-margin-top: 24px;
     }
@@ -335,7 +366,8 @@
       }
 
       .hero-grid,
-      .section-grid {
+      .section-grid,
+      .method-grid {
         grid-template-columns: 1fr;
       }
 
@@ -389,7 +421,7 @@
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="#story-start">Begin the Story →</a>
-          <a class="btn btn-secondary" href="#distribution">See the charts below</a>
+          <a class="btn btn-secondary" href="#methodology">How the data was built</a>
         </div>
       </div>
 
@@ -409,8 +441,8 @@
             <span class="label">visible directly on the homepage</span>
           </div>
           <div class="metric">
-            <span class="value">Dark theme</span>
-            <span class="label">consistent across the whole portfolio</span>
+            <span class="value">Open data</span>
+            <span class="label">structured from public city records</span>
           </div>
           <div class="metric">
             <span class="value">Story-driven</span>
@@ -422,6 +454,37 @@
   </header>
 
   <main>
+    <section id="methodology" class="section">
+      <div class="container method-grid">
+        <div class="method-card">
+          <div class="kicker">Methodology</div>
+          <h2>How We Collected and Organized the Crime Information</h2>
+          <p>
+            This analysis is based on publicly available incident records from the San Francisco Open Data Portal, combining the historical crime dataset for 2003 to May 2018 with the more recent police incident dataset covering 2018 to the present.
+          </p>
+          <p>
+            Together, these records provide detailed information about each reported incident, including when it happened, where it happened, how it was classified, and which police and neighborhood areas were involved.
+          </p>
+          <ul>
+            <li>Date and time fields were used to analyze temporal patterns across the day.</li>
+            <li>Incident categories were used to compare the most common and most serious crime types.</li>
+            <li>District, neighborhood, and geographic information were used to support spatial interpretation.</li>
+            <li>Historical and recent datasets were aligned to create one long-run analytical view.</li>
+          </ul>
+        </div>
+
+        <div class="method-note">
+          <h3>What this section adds</h3>
+          <p>
+            Like the reference page, this section explains the origin and structure of the dataset before the visual story begins. It gives the reader context for where the numbers come from and why the following charts can be interpreted as a coherent overview of crime patterns in San Francisco.
+          </p>
+          <p>
+            The source inspiration for this section is the “How We Collected and Organized the Crime Information” block on the reference page. citeturn630079view0
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section id="story-start" class="section story-start">
       <div class="container section-grid">
         <div class="story-card">
