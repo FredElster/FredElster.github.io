@@ -454,33 +454,48 @@
   </header>
 
   <main>
-    <section id="methodology" class="section">
-      <div class="container method-grid">
-        <div class="method-card">
-          <div class="kicker">Methodology</div>
-          <h2>How We Collected and Organized the Crime Information</h2>
+    <<section class="section">
+      <div class="container">
+
+        <div class="copy">
+          <div class="eyebrow">Trends over time</div>
+          <h2>How Crime Has Changed Over Two Decades</h2>
           <p>
-            This analysis is based on publicly available incident records from the San Francisco Open Data Portal, combining the historical crime dataset for 2003 to May 2018 with the more recent police incident dataset covering 2018 to the present.
+            Before diving into interactive exploration, we first look at long-term trends in reported crime. 
+            These static views highlight how both individual categories and overall incident levels have evolved over time.
           </p>
-          <p>
-            Together, these records provide detailed information about each reported incident, including when it happened, where it happened, how it was classified, and which police and neighborhood areas were involved.
-          </p>
-          <ul>
-            <li>Date and time fields were used to analyze temporal patterns across the day.</li>
-            <li>Incident categories were used to compare the most common and most serious crime types.</li>
-            <li>District, neighborhood, and geographic information were used to support spatial interpretation.</li>
-            <li>Historical and recent datasets were aligned to create one long-run analytical view.</li>
-          </ul>
         </div>
 
-        <div class="method-note">
-          <h3>What this section adds</h3>
-          <p>
-            Like the reference page, this section explains the origin and structure of the dataset before the visual story begins. It gives the reader context for where the numbers come from and why the following charts can be interpreted as a coherent overview of crime patterns in San Francisco.
-          </p>
-          <p>
-            The source inspiration for this section is the “How We Collected and Organized the Crime Information” block on the reference page. citeturn630079view0
-          </p>
+        <!-- FIRST IMAGE -->
+        <div class="viz-card" style="margin-top: 2rem;">
+          <div class="viz-body">
+            <h3>Annual Incident Counts by Category</h3>
+            <p>
+              This chart shows how major crime categories have developed from 2003 to 2025. 
+              Property crimes such as larceny dominate the overall volume, while most categories follow a similar pattern: 
+              gradual growth, a sharp disruption around 2020, and a noticeable decline in recent years.
+            </p>
+          </div>
+
+          <div class="viz-frame-wrap">
+            <img src="images/counts.png" class="viz-frame" style="height:auto;" />
+          </div>
+        </div>
+
+        <!-- SECOND IMAGE -->
+        <div class="viz-card" style="margin-top: 2rem;">
+          <div class="viz-body">
+            <h3>Daily Crime Frequency: Historic vs Recent</h3>
+            <p>
+              Comparing daily incident counts before and after 2018 reveals a clear structural shift. 
+              Crime levels dropped sharply during the COVID-19 period, followed by a partial recovery and then a new downward trend. 
+              Overall, recent years show lower average crime levels compared to the historical period.
+            </p>
+          </div>
+
+          <div class="viz-frame-wrap">
+            <img src="images/overview.png" class="viz-frame" style="height:auto;" />
+          </div>
         </div>
       </div>
     </section>
