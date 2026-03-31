@@ -9,9 +9,8 @@
     :root {
       --bg: #1a1a2e;
       --bg-soft: #171729;
-      --panel: rgba(34, 34, 59, 0.88);
-      --panel-strong: rgba(34, 34, 59, 0.96);
-      --panel-hover: #2f2f52;
+      --panel: rgba(34, 34, 59, 0.9);
+      --panel-strong: rgba(34, 34, 59, 0.97);
       --text: #f5f7fa;
       --muted: #b8c1d1;
       --accent: #16c79a;
@@ -19,7 +18,7 @@
       --border: rgba(22,199,154,0.2);
       --shadow: 0 18px 50px rgba(0,0,0,0.35);
       --radius: 22px;
-      --content-width: 1180px;
+      --content-width: 1200px;
       --copy-width: 760px;
     }
 
@@ -40,11 +39,6 @@
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
     }
 
     .container {
@@ -76,7 +70,7 @@
     }
 
     .hero {
-      min-height: 100vh;
+      min-height: 92vh;
       display: flex;
       align-items: center;
       border-bottom: 1px solid var(--border);
@@ -96,7 +90,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
       gap: 2.5rem;
       align-items: center;
       width: 100%;
@@ -189,11 +183,8 @@
       border: 1px solid rgba(22,199,154,0.12);
     }
 
-    .metric span {
-      display: block;
-    }
-
     .metric .value {
+      display: block;
       font-size: 1.4rem;
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -202,12 +193,13 @@
     }
 
     .metric .label {
+      display: block;
       color: var(--muted);
       font-size: 0.92rem;
     }
 
     .section {
-      padding: 6rem 0;
+      padding: 5rem 0;
       border-bottom: 1px solid rgba(22,199,154,0.08);
     }
 
@@ -217,7 +209,7 @@
 
     .section-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.82fr) minmax(280px, 1.18fr);
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
       gap: 2rem;
       align-items: start;
     }
@@ -275,13 +267,6 @@
     .viz-card {
       display: flex;
       flex-direction: column;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .viz-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(22,199,154,0.34);
-      box-shadow: 0 24px 56px rgba(0,0,0,0.42);
     }
 
     .viz-top {
@@ -308,7 +293,7 @@
     }
 
     .viz-body {
-      padding: 1.3rem 1.25rem 1.35rem;
+      padding: 1.3rem 1.25rem 1rem;
     }
 
     .viz-body h3 {
@@ -317,24 +302,21 @@
     }
 
     .viz-body p {
-      margin: 0 0 1.2rem;
+      margin: 0;
       color: var(--muted);
     }
 
-    .viz-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--accent);
-      font-weight: 700;
+    .viz-frame-wrap {
+      padding: 1rem 1.25rem 1.25rem;
     }
 
-    .viz-link span {
-      transition: transform 0.2s ease;
-    }
-
-    .viz-card:hover .viz-link span {
-      transform: translateX(5px);
+    .viz-frame {
+      width: 100%;
+      height: 620px;
+      border: 1px solid rgba(22,199,154,0.14);
+      border-radius: 18px;
+      background: #22223b;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
     }
 
     .story-start {
@@ -360,6 +342,10 @@
       .story-card {
         position: static;
       }
+
+      .viz-frame {
+        height: 520px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -378,6 +364,15 @@
       .hero-metrics {
         grid-template-columns: 1fr;
       }
+
+      .viz-frame {
+        height: 420px;
+      }
+
+      .viz-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -394,7 +389,7 @@
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="#story-start">Begin the Story →</a>
-          <a class="btn btn-secondary" href="visualizations/distribution.html">Jump to a visualization</a>
+          <a class="btn btn-secondary" href="#distribution">See the charts below</a>
         </div>
       </div>
 
@@ -410,16 +405,16 @@
             <span class="label">of police-reported incidents</span>
           </div>
           <div class="metric">
-            <span class="value">3 views</span>
-            <span class="label">to explore time, patterns, and categories</span>
+            <span class="value">3 embedded views</span>
+            <span class="label">visible directly on the homepage</span>
           </div>
           <div class="metric">
             <span class="value">Dark theme</span>
             <span class="label">consistent across the whole portfolio</span>
           </div>
           <div class="metric">
-            <span class="value">Interactive</span>
-            <span class="label">designed for exploration, not static reading</span>
+            <span class="value">Story-driven</span>
+            <span class="label">read it top to bottom like a narrative</span>
           </div>
         </div>
       </aside>
@@ -433,28 +428,28 @@
           <div class="kicker">Start here</div>
           <h2>The Big Picture</h2>
           <p>
-            This portfolio is structured like a short visual story. Each section introduces one analytical angle and links directly to the corresponding interactive page.
+            This first view gives the overall structure of crime in the dataset. Before looking at timing, it helps to see which categories dominate the long-run picture.
           </p>
           <ul>
-            <li>Start with the overall distribution of crime categories.</li>
-            <li>Then explore the hourly rhythm of incidents in two alternative views.</li>
-            <li>Use the linked pages to inspect the data in more detail.</li>
+            <li>Use this as the overview of the full dataset.</li>
+            <li>Look for the categories that appear most often.</li>
+            <li>Then continue to the hourly views below.</li>
           </ul>
         </div>
 
-        <article class="viz-card">
+        <article id="distribution" class="viz-card">
           <div class="viz-top">
             <span class="viz-tag">Distribution</span>
-            <span class="viz-status">Overview view</span>
+            <span class="viz-status">Embedded visualization</span>
           </div>
           <div class="viz-body">
             <h3>Crime Distribution</h3>
             <p>
-              Explore how reported crime is distributed across categories and frequencies. This is the fastest way to see which incident types dominate the long-run picture.
+              Explore how reported crime is distributed across categories and frequencies, directly on the homepage.
             </p>
-            <a class="viz-link" href="visualizations/distribution.html">
-              View analysis <span>→</span>
-            </a>
+          </div>
+          <div class="viz-frame-wrap">
+            <iframe class="viz-frame" src="visualizations/distribution.html" title="Crime Distribution"></iframe>
           </div>
         </article>
       </div>
@@ -469,25 +464,25 @@
             Crime is not evenly spread across the clock. This view highlights when activity intensifies and when incidents are relatively rare.
           </p>
           <ul>
-            <li>Identify peaks during busy hours.</li>
-            <li>See whether the pattern is concentrated or broadly spread.</li>
-            <li>Use hover interactions to inspect exact values.</li>
+            <li>Look for daily peaks and quiet hours.</li>
+            <li>Use hover details in the embedded chart.</li>
+            <li>Compare the shape with the second hourly chart below.</li>
           </ul>
         </div>
 
         <article class="viz-card">
           <div class="viz-top">
             <span class="viz-tag">Hourly pattern</span>
-            <span class="viz-status">Interactive view I</span>
+            <span class="viz-status">Embedded visualization</span>
           </div>
           <div class="viz-body">
             <h3>Hourly Crime Patterns I</h3>
             <p>
-              Interactive visualization of how crime varies across the hours of the day, designed to make the daily rhythm of reported incidents easy to read.
+              Interactive view of how crime varies across the hours of the day, embedded directly into the landing page.
             </p>
-            <a class="viz-link" href="visualizations/crime_hourly_interactive1.html">
-              View plot <span>→</span>
-            </a>
+          </div>
+          <div class="viz-frame-wrap">
+            <iframe class="viz-frame" src="visualizations/crime_hourly_interactive1.html" title="Hourly Crime Patterns I"></iframe>
           </div>
         </article>
       </div>
@@ -499,28 +494,28 @@
           <div class="kicker">Compare views</div>
           <h2>A Second Way to Read the Same Pattern</h2>
           <p>
-            Different chart designs surface different aspects of the same data. This alternative view is useful when you want to compare how presentation affects interpretation.
+            Different chart designs emphasize different things. This final section lets the reader compare two representations without leaving the homepage.
           </p>
           <ul>
-            <li>Cross-check the same hourly signal in a new design.</li>
-            <li>Compare clarity, emphasis, and readability.</li>
-            <li>Use it as a companion to the first hourly chart.</li>
+            <li>Compare readability across the two hourly views.</li>
+            <li>Notice what becomes more obvious in this design.</li>
+            <li>Use the full page only if you later want a dedicated chart page.</li>
           </ul>
         </div>
 
         <article class="viz-card">
           <div class="viz-top">
             <span class="viz-tag">Hourly pattern</span>
-            <span class="viz-status">Interactive view II</span>
+            <span class="viz-status">Embedded visualization</span>
           </div>
           <div class="viz-body">
             <h3>Hourly Crime Patterns II</h3>
             <p>
-              Alternative interactive view for comparing hourly crime distributions and evaluating how the same pattern reads across different visual designs.
+              Alternative interactive view for comparing hourly crime distributions as part of the same scrolling story.
             </p>
-            <a class="viz-link" href="visualizations/crime_hourly_interactive2.html">
-              View plot <span>→</span>
-            </a>
+          </div>
+          <div class="viz-frame-wrap">
+            <iframe class="viz-frame" src="visualizations/crime_hourly_interactive2.html" title="Hourly Crime Patterns II"></iframe>
           </div>
         </article>
       </div>
