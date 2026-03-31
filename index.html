@@ -3,23 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>San Francisco Crime Trends 2003–2026</title>
+  <title>SF Crime: Uneven Decline Across Time and Place</title>
 
   <style>
     :root {
       --bg: #1a1a2e;
       --bg-soft: #171729;
-      --panel: rgba(34, 34, 59, 0.9);
-      --panel-strong: rgba(34, 34, 59, 0.97);
+      --panel: rgba(34, 34, 59, 0.95);
       --text: #f5f7fa;
       --muted: #b8c1d1;
       --accent: #16c79a;
-      --accent-soft: rgba(22,199,154,0.12);
-      --border: rgba(22,199,154,0.2);
-      --shadow: 0 18px 50px rgba(0,0,0,0.35);
+      --accent-soft: rgba(22, 199, 154, 0.12);
+      --border: rgba(22, 199, 154, 0.2);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
       --radius: 22px;
-      --content-width: 1200px;
-      --copy-width: 760px;
+      --content-width: 980px;
+      --measure: 720px;
     }
 
     * { box-sizing: border-box; }
@@ -28,17 +27,26 @@
 
     body {
       margin: 0;
-      font-family: Inter, system-ui, sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top right, rgba(22,199,154,0.08), transparent 22%),
+        radial-gradient(circle at top right, rgba(22, 199, 154, 0.08), transparent 24%),
         linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     a {
-      color: inherit;
+      color: var(--accent);
       text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
     }
 
     .container {
@@ -46,16 +54,16 @@
       margin: 0 auto;
     }
 
-    .copy {
-      width: min(100%, var(--copy-width));
+    .measure {
+      width: min(100%, var(--measure));
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--accent);
       margin-bottom: 1rem;
+      color: var(--accent);
       font-size: 0.9rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -66,11 +74,11 @@
       width: 28px;
       height: 1px;
       background: var(--accent);
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     .hero {
-      min-height: 92vh;
+      min-height: 84vh;
       display: flex;
       align-items: center;
       border-bottom: 1px solid var(--border);
@@ -83,526 +91,349 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 85% 18%, rgba(22,199,154,0.12), transparent 18%),
-        radial-gradient(circle at 12% 82%, rgba(22,199,154,0.08), transparent 18%);
+        radial-gradient(circle at 85% 20%, rgba(22, 199, 154, 0.12), transparent 18%),
+        radial-gradient(circle at 10% 85%, rgba(22, 199, 154, 0.06), transparent 18%);
       pointer-events: none;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-      gap: 2.5rem;
-      align-items: center;
-      width: 100%;
-      padding: 4rem 0;
+    .hero-inner {
       position: relative;
       z-index: 1;
+      padding: 4rem 0;
     }
 
     h1 {
       margin: 0 0 1.25rem;
-      font-size: clamp(3rem, 6vw, 5.25rem);
+      font-size: clamp(3rem, 7vw, 5.2rem);
       line-height: 0.95;
       letter-spacing: -0.04em;
     }
 
-    .hero p {
+    .lead {
       color: var(--muted);
       font-size: 1.08rem;
-      max-width: 700px;
-      margin: 0 0 2rem;
+      margin: 0 0 1.2rem;
     }
 
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 0.9rem;
-      margin-top: 1.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.8rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
-      padding: 0.95rem 1.2rem;
+      gap: 0.5rem;
+      padding: 0.9rem 1.2rem;
       border-radius: 999px;
       border: 1px solid var(--border);
-      font-weight: 600;
+      font-weight: 700;
       transition: 0.25s ease;
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #0f1720;
+      color: #0e1720;
       border-color: transparent;
     }
 
     .btn-primary:hover {
+      text-decoration: none;
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(22,199,154,0.28);
+      box-shadow: 0 10px 24px rgba(22, 199, 154, 0.25);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.02);
       color: var(--text);
+      background: rgba(255,255,255,0.03);
     }
 
     .btn-secondary:hover {
+      text-decoration: none;
+      border-color: rgba(22, 199, 154, 0.38);
       background: rgba(255,255,255,0.05);
-      border-color: rgba(22,199,154,0.34);
     }
 
-    .hero-panel {
-      background: linear-gradient(145deg, rgba(34,34,59,0.98), rgba(28,28,51,0.96));
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 1.4rem;
-      backdrop-filter: blur(10px);
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-
-    .metric {
-      padding: 1rem;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(22,199,154,0.12);
-    }
-
-    .metric .value {
-      display: block;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-
-    .metric .label {
-      display: block;
-      color: var(--muted);
-      font-size: 0.92rem;
+    main {
+      padding: 2rem 0 4rem;
     }
 
     .section {
-      padding: 5rem 0;
-      border-bottom: 1px solid rgba(22,199,154,0.08);
+      padding: 4.5rem 0;
+      border-bottom: 1px solid rgba(22, 199, 154, 0.08);
     }
 
     .section:last-of-type {
       border-bottom: none;
     }
 
-    .section-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .section h2 {
+    h2 {
       margin: 0 0 1rem;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-size: clamp(2rem, 4vw, 2.8rem);
       line-height: 1.05;
       letter-spacing: -0.03em;
     }
 
-    .section p {
-      color: var(--muted);
+    p {
       margin: 0 0 1rem;
     }
 
-    .story-card,
-    .viz-card,
-    .method-card {
-      background: linear-gradient(145deg, rgba(34,34,59,0.96), rgba(28,28,51,0.92));
+    .muted {
+      color: var(--muted);
+    }
+
+    .callout {
+      margin-top: 1.5rem;
+      padding: 1.15rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--text);
+    }
+
+    .figure-card {
+      margin-top: 1.8rem;
+      background: linear-gradient(145deg, rgba(34,34,59,0.97), rgba(28,28,51,0.94));
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .story-card {
-      padding: 1.5rem;
-      position: sticky;
-      top: 1.25rem;
-    }
-
-    .story-card .kicker,
-    .method-card .kicker {
-      display: inline-block;
-      margin-bottom: 0.9rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .story-card ul,
-    .method-card ul {
-      margin: 1rem 0 0;
-      padding-left: 1.1rem;
-      color: var(--muted);
-    }
-
-    .story-card li + li,
-    .method-card li + li {
-      margin-top: 0.55rem;
-    }
-
-    .viz-card {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .viz-top {
-      padding: 1rem 1.15rem;
-      border-bottom: 1px solid var(--border);
+    .figure-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
       background: rgba(255,255,255,0.02);
     }
 
-    .viz-tag {
+    .figure-label {
       color: var(--accent);
       font-size: 0.84rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      font-weight: 800;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .viz-status {
+    .figure-type {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
-    .viz-body {
-      padding: 1.3rem 1.25rem 1rem;
+    .figure-media {
+      padding: 1rem 1.25rem 0.5rem;
     }
 
-    .viz-body h3 {
-      margin: 0 0 0.55rem;
-      font-size: 1.3rem;
-    }
-
-    .viz-body p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .viz-frame-wrap {
-      padding: 1rem 1.25rem 1.25rem;
-    }
-
-    .viz-frame {
+    .figure-media img,
+    .figure-media iframe {
       width: 100%;
-      height: 620px;
-      border: 1px solid rgba(22,199,154,0.14);
+      border: 1px solid rgba(22, 199, 154, 0.14);
       border-radius: 18px;
       background: #22223b;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
     }
 
-    .method-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 2rem;
-      align-items: start;
+    .figure-media iframe {
+      height: 620px;
     }
 
-    .method-card {
-      padding: 1.6rem;
+    figcaption {
+      padding: 0.8rem 1.25rem 1.3rem;
+      color: var(--muted);
+      font-size: 0.96rem;
     }
 
-    .method-note {
-      padding: 1.25rem;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(22,199,154,0.12);
+    .refs {
+      padding-left: 1.1rem;
+      color: var(--muted);
     }
 
-    .method-note h3 {
-      margin: 0 0 0.75rem;
-      font-size: 1.15rem;
+    .refs li + li {
+      margin-top: 0.55rem;
     }
 
-    .method-note p:last-child {
-      margin-bottom: 0;
-    }
-
-    .story-start {
-      scroll-margin-top: 24px;
-    }
-
-    .footer {
-      padding: 2.5rem 0 3rem;
+    footer {
+      padding: 2rem 0 3rem;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 700px) {
       .hero {
         min-height: auto;
       }
 
-      .hero-grid,
-      .section-grid,
-      .method-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .story-card {
-        position: static;
-      }
-
-      .viz-frame {
-        height: 520px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero-grid {
+      .hero-inner {
         padding: 3.5rem 0;
       }
 
       .section {
-        padding: 4rem 0;
+        padding: 3.5rem 0;
       }
 
-      h1 {
-        font-size: clamp(2.45rem, 12vw, 3.75rem);
-      }
-
-      .hero-metrics {
-        grid-template-columns: 1fr;
-      }
-
-      .viz-frame {
-        height: 420px;
-      }
-
-      .viz-top {
+      .figure-top {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .figure-media iframe {
+        height: 420px;
       }
     }
   </style>
 </head>
-
 <body>
   <header class="hero">
-    <div class="container hero-grid">
-      <div class="copy">
-        <div class="eyebrow">Assignment 2</div>
-        <h1>SF Crime: Two Decades of Data</h1>
-        <p>
-          Two decades of police data reveal clear patterns: most crime concentrates in just a few categories, some neighborhoods improved dramatically while others stayed challenging, and the shape of crime changed in surprising ways. Here’s what the numbers really tell us — in plain language.
+    <div class="container hero-inner">
+      <div class="measure">
+        <div class="eyebrow">Assignment 2 · Magazine Story</div>
+        <h1>SF Crime: Uneven Decline Across Time and Place</h1>
+        <p class="lead">
+          San Francisco crime has fallen overall since the early 2000s, but that decline has not been uniform. Some crime types dropped sharply, some places remained persistent hotspots, and citywide averages hide important local differences.
+        </p>
+        <p class="lead">
+          This page tells one short story with exactly three visualizations: one static chart, one map, and one interactive view.
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#story-start">Begin the Story →</a>
-          <a class="btn btn-secondary" href="#methodology">How the data was built</a>
+          <a class="btn btn-primary" href="#dataset">Start reading →</a>
+          <a class="btn btn-secondary" href="#interactive">Jump to the interactive figure</a>
         </div>
       </div>
-
-      <aside class="hero-panel" aria-label="Project summary">
-        <div class="panel-header">
-          <span>Project Overview</span>
-          <span>San Francisco, 2003–2026</span>
-        </div>
-
-        <div class="hero-metrics">
-          <div class="metric">
-            <span class="value">20+ years</span>
-            <span class="label">of police-reported incidents</span>
-          </div>
-          <div class="metric">
-            <span class="value">3 embedded views</span>
-            <span class="label">visible directly on the homepage</span>
-          </div>
-          <div class="metric">
-            <span class="value">Open data</span>
-            <span class="label">structured from public city records</span>
-          </div>
-          <div class="metric">
-            <span class="value">Story-driven</span>
-            <span class="label">read it top to bottom like a narrative</span>
-          </div>
-        </div>
-      </aside>
     </div>
   </header>
 
   <main>
-    <<section class="section">
+    <section id="dataset" class="section">
       <div class="container">
-
-        <div class="copy">
-          <div class="eyebrow">Trends over time</div>
-          <h2>How Crime Has Changed Over Two Decades</h2>
-          <p>
-            Before diving into interactive exploration, we first look at long-term trends in reported crime. 
-            These static views highlight how both individual categories and overall incident levels have evolved over time.
+        <div class="measure">
+          <div class="eyebrow">Dataset</div>
+          <h2>What the data contains</h2>
+          <p class="muted">
+            The analysis uses public police incident records from San Francisco. Each row represents a reported incident and includes information such as the date, time, category, police district, and neighborhood, which makes it possible to study how crime changed over time and across the city.
           </p>
-        </div>
-
-        <!-- FIRST IMAGE -->
-        <div class="viz-card" style="margin-top: 2rem;">
-          <div class="viz-body">
-            <h3>Annual Incident Counts by Category</h3>
-            <p>
-              This chart shows how major crime categories have developed from 2003 to 2025. 
-              Property crimes such as larceny dominate the overall volume, while most categories follow a similar pattern: 
-              gradual growth, a sharp disruption around 2020, and a noticeable decline in recent years.
-            </p>
-          </div>
-
-          <div class="viz-frame-wrap">
-            <img src="images/counts.png" class="viz-frame" style="height:auto;" />
-          </div>
-        </div>
-
-        <!-- SECOND IMAGE -->
-        <div class="viz-card" style="margin-top: 2rem;">
-          <div class="viz-body">
-            <h3>Daily Crime Frequency: Historic vs Recent</h3>
-            <p>
-              Comparing daily incident counts before and after 2018 reveals a clear structural shift. 
-              Crime levels dropped sharply during the COVID-19 period, followed by a partial recovery and then a new downward trend. 
-              Overall, recent years show lower average crime levels compared to the historical period.
-            </p>
-          </div>
-
-          <div class="viz-frame-wrap">
-            <img src="images/overview.png" class="viz-frame" style="height:auto;" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="story-start" class="section story-start">
-      <div class="container section-grid">
-        <div class="story-card">
-          <div class="kicker">Start here</div>
-          <h2>The Big Picture</h2>
-          <p>
-            This first view gives the overall structure of crime in the dataset. Before looking at timing, it helps to see which categories dominate the long-run picture.
+          <p class="muted">
+            For this story, the goal is not to summarize every possible pattern. Instead, the page focuses on one main claim: overall crime declined, but the decline looks different depending on what type of crime you study and where you look.
           </p>
-          <ul>
-            <li>Use this as the overview of the full dataset.</li>
-            <li>Look for the categories that appear most often.</li>
-            <li>Then continue to the hourly views below.</li>
-          </ul>
+          <div class="callout">
+            Keep this page short and linear: first the citywide trend, then the geography, and finally an interactive view that lets the reader inspect one pattern in more detail.
+          </div>
         </div>
-
-        <article id="distribution" class="viz-card">
-          <div class="viz-top">
-            <span class="viz-tag">Distribution</span>
-            <span class="viz-status">Embedded visualization</span>
-          </div>
-          <div class="viz-body">
-            <h3>Crime Distribution</h3>
-            <p>
-              Explore how reported crime is distributed across categories and frequencies, directly on the homepage.
-            </p>
-          </div>
-          <div class="viz-frame-wrap">
-            <iframe class="viz-frame" src="visualizations/distribution.html" title="Crime Distribution"></iframe>
-          </div>
-        </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="container section-grid">
-        <div class="story-card">
-          <div class="kicker">Time of day</div>
-          <h2>How Crime Moves Through the Day</h2>
-          <p>
-            Crime is not evenly spread across the clock. This view highlights when activity intensifies and when incidents are relatively rare.
+      <div class="container">
+        <div class="measure">
+          <div class="eyebrow">Figure 1</div>
+          <h2>The overall decline is real, but it is driven mostly by a few large categories</h2>
+          <p class="muted">
+            Looking first at annual totals helps establish the broad story. The most important point is that property crime, especially larceny and theft, dominates the overall volume, which means changes in these categories shape the citywide trend more than smaller categories do.
           </p>
-          <ul>
-            <li>Look for daily peaks and quiet hours.</li>
-            <li>Use hover details in the embedded chart.</li>
-            <li>Compare the shape with the second hourly chart below.</li>
-          </ul>
         </div>
 
-        <article class="viz-card">
-          <div class="viz-top">
-            <span class="viz-tag">Hourly pattern</span>
-            <span class="viz-status">Embedded visualization</span>
+        <figure class="figure-card">
+          <div class="figure-top">
+            <div class="figure-label">Static Chart</div>
+            <div class="figure-type">PNG image</div>
           </div>
-          <div class="viz-body">
-            <h3>Hourly Crime Patterns I</h3>
-            <p>
-              Interactive view of how crime varies across the hours of the day, embedded directly into the landing page.
-            </p>
+          <div class="figure-media">
+            <img src="images/counts.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
           </div>
-          <div class="viz-frame-wrap">
-            <iframe class="viz-frame" src="visualizations/crime_hourly_interactive1.html" title="Hourly Crime Patterns I"></iframe>
-          </div>
-        </article>
+          <figcaption>
+            <strong>Figure 1.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
+          </figcaption>
+        </figure>
       </div>
     </section>
 
     <section class="section">
-      <div class="container section-grid">
-        <div class="story-card">
-          <div class="kicker">Compare views</div>
-          <h2>A Second Way to Read the Same Pattern</h2>
-          <p>
-            Different chart designs emphasize different things. This final section lets the reader compare two representations without leaving the homepage.
+      <div class="container">
+        <div class="measure">
+          <div class="eyebrow">Figure 2</div>
+          <h2>Citywide averages hide strong geographic concentration</h2>
+          <p class="muted">
+            A city can become safer overall while still having neighborhoods where crime remains heavily concentrated. This map is where the story shifts from “how much crime” to “where crime is concentrated,” which makes the decline harder to interpret as a simple citywide success story.
           </p>
-          <ul>
-            <li>Compare readability across the two hourly views.</li>
-            <li>Notice what becomes more obvious in this design.</li>
-            <li>Use the full page only if you later want a dedicated chart page.</li>
-          </ul>
         </div>
 
-        <article class="viz-card">
-          <div class="viz-top">
-            <span class="viz-tag">Hourly pattern</span>
-            <span class="viz-status">Embedded visualization</span>
+        <figure class="figure-card">
+          <div class="figure-top">
+            <div class="figure-label">Map</div>
+            <div class="figure-type">Embedded HTML</div>
           </div>
-          <div class="viz-body">
-            <h3>Hourly Crime Patterns II</h3>
-            <p>
-              Alternative interactive view for comparing hourly crime distributions as part of the same scrolling story.
-            </p>
+          <div class="figure-media">
+            <iframe src="visualizations/map.html" title="Map of San Francisco crime concentration"></iframe>
           </div>
-          <div class="viz-frame-wrap">
-            <iframe class="viz-frame" src="visualizations/crime_hourly_interactive2.html" title="Hourly Crime Patterns II"></iframe>
+          <figcaption>
+            <strong>Figure 2.</strong> Geographic view of reported crime in San Francisco. The map shows that incidents are not distributed evenly across the city: a limited set of neighborhoods and districts account for a disproportionate share of activity. This matters because citywide averages can conceal persistent local hotspots.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="interactive" class="section">
+      <div class="container">
+        <div class="measure">
+          <div class="eyebrow">Figure 3</div>
+          <h2>The timing of crime adds another layer to the story</h2>
+          <p class="muted">
+            After seeing the long-run decline and the spatial concentration, the final figure lets the reader interact with one more dimension: time of day. This figure is here to deepen the story, not to restart it. The point is that crime is patterned in time as well as in place.
+          </p>
+        </div>
+
+        <figure class="figure-card">
+          <div class="figure-top">
+            <div class="figure-label">Interactive Plotly Visualization</div>
+            <div class="figure-type">Embedded HTML</div>
           </div>
-        </article>
+          <div class="figure-media">
+            <iframe src="visualizations/crime_hourly_interactive1.html" title="Interactive hourly crime visualization"></iframe>
+          </div>
+          <figcaption>
+            <strong>Figure 3.</strong> Interactive view of how crime varies across the hours of the day. Use this figure to inspect when incidents concentrate and whether the daily pattern is broad or sharply peaked. Together with the first two figures, it shows that San Francisco crime varies across time, place, and category rather than following one single simple trend.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="measure">
+          <div class="eyebrow">Conclusion</div>
+          <h2>One story, three views</h2>
+          <p class="muted">
+            The citywide trend suggests improvement, but the broader picture is more uneven. The decline is shaped mainly by a few dominant crime categories, the burden of crime remains geographically concentrated, and daily timing patterns reveal that incidents are structured rather than random.
+          </p>
+          <p class="muted">
+            That is the main takeaway of this page: crime in San Francisco declined overall, but understanding that change requires looking beyond one aggregate number.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="measure">
+          <div class="eyebrow">References</div>
+          <h2>Sources</h2>
+          <ol class="refs">
+            <li>San Francisco Open Data Portal — police incident data.</li>
+            <li>Add any external sources here that help explain spikes, declines, or neighborhood patterns.</li>
+            <li>Add one or two supporting references if you discuss policy changes, COVID effects, or local context.</li>
+          </ol>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="container">
-      Built as a story-driven, interactive portfolio for San Francisco crime analysis.
+      Built as a short, author-driven visual story for San Francisco crime analysis.
     </div>
   </footer>
 </body>
