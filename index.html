@@ -320,149 +320,158 @@
     </div>
   </header>
 
-  <main>
-    <section id="dataset" class="section">
-      <div class="container">
-        <div class="measure">
-          <div class="eyebrow">Dataset</div>
-          <h2>How We Collected and Organized the Crime Information</h2>
-          <p class="muted">
-            The analysis is based off publicly available information from Public Safety section on the San Francisco Open Data Portal, where the data "Police Department Incident Reports Historical 2003 to May 2018" and "Police Department Incident Report: 2018 to Present" can be found.
-          </p>
-        </div>
-
-        <figure class="figure-card">
-          <div class="figure-top">
-            <div class="figure-label">Static Chart</div>
-            <div class="figure-type">PNG image</div>
-          </div>
-          <div class="figure-media">
-            <img src="images/overview.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
-          </div>
-          <figcaption>
-            <strong>Figure 1.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
-          </figcaption>
-        </figure>
+<main>
+  <section id="dataset" class="section">
+    <div class="container">
+      <div class="measure">
+        <div class="eyebrow">Dataset</div>
+        <h2>How We Collected and Organized the Crime Information</h2>
         <p class="muted">
-            The data also classifies each report into an incident category. The most frequently recorded categories include:
-        </div>
-        <figure class="figure-card">
-          <div class="figure-top">
-            <div class="figure-label">Map</div>
-            <div class="figure-type">Embedded HTML</div>
-          </div>
-          <div class="figure-media">
-            <iframe src="visualizations/categories.html" title="Map of San Francisco crime concentration"></iframe>
-          </div>
-          <figcaption>
-            <strong>Figure 2 </strong>. The top 15 most frequently reported crime categories in San Francisco. Larceny/theft is by far the most common, followed by assault, vandalism, and burglary. These categories together account for a large share of total incidents, while many other categories occur much less frequently.
-          </figcaption>
-        </figure>
-         <p class="muted">
-            By combining detailed classifications with geographic and temporal indicators, this dataset serves as a valuable tool for understanding patterns, identifying emerging issues, and supporting evidence‑based policy development for the residents of San Francisco.
-        </div>
-       </div>
-      </section>
-
-        <div class="measure">
-          <h2>COVID-19 Impact on Crime Rates</h2>
-          <p class="muted">
-            The "Annual Incident Counts for Focus Crimes (2003-2025)" graph plot shows an interesting visualization of a shift in societal behaviour during the covid-19 lockdown. Crimes such as Larceny/Theft, Assault and Missing Person all decreasing significantly, however interestingly Burglary and Vandalism behaving oppositely, even though majority of people were significantly more home than usual. This begs the question of weather previous burgler incident reports were a good representation of the true incident count, or the lack of diversity in social interactions increased scepticism and paranoia in the people of San Francisco
-          </p>
-        </div>
-
-        <figure class="figure-card">
-          <div class="figure-top">
-            <div class="figure-label">Static Chart</div>
-            <div class="figure-type">PNG image</div>
-          </div>
-          <div class="figure-media">
-            <img src="images/counts.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
-          </div>
-          <figcaption>
-            <strong>Supporting chart.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
-          </figcaption>
-        </figure>
+          The analysis is based off publicly available information from Public Safety section on the San Francisco Open Data Portal, where the data "Police Department Incident Reports Historical 2003 to May 2018" and "Police Department Incident Report: 2018 to Present" can be found.
+        </p>
       </div>
-    </section>
-    
 
-    <section class="section">
-      <div class="container">
-        <div class="measure">
-          <div class="eyebrow">Figure 2</div>
-          <h2>Citywide averages hide strong geographic concentration</h2>
-          <p class="muted">
-            The geographical representation of assaults in neighborhoods helps clearly spreading awareness, in which parts of the city precautions should be taken. This map tells the story of "Where crime is concentrated" rather than "how much crime", showing clear focus areas instead of a numerical increase or decrease.
+      <figure class="figure-card">
+        <div class="figure-top">
+          <div class="figure-label">Static Chart</div>
+          <div class="figure-type">PNG image</div>
         </div>
-
-        <figure class="figure-card">
-          <div class="figure-top">
-            <div class="figure-label">Map</div>
-            <div class="figure-type">Embedded HTML</div>
-          </div>
-          <div class="figure-media">
-            <iframe src="visualizations/map.html" title="Map of San Francisco crime concentration"></iframe>
-          </div>
-          <figcaption>
-            <strong>Figure 2.</strong> Geographic view of reported crime in San Francisco. The map shows that incidents are not distributed evenly across the city: a limited set of neighborhoods and districts account for a disproportionate share of activity. This matters because citywide averages can conceal persistent local hotspots.
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section id="interactive" class="section">
-      <div class="container">
-        <div class="measure">
-          <div class="eyebrow">Figure 3</div>
-          <h2>The timing of crime adds another layer to the story</h2>
-          <p class="muted">
-            After seeing the long-run decline and the spatial concentration, the final figure lets the reader interact with one more dimension: time of day. This figure is here to deepen the story, not to restart it. The point is that crime is patterned in time as well as in place.
-          </p>
+        <div class="figure-media">
+          <img src="images/overview.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
         </div>
+        <figcaption>
+          <strong>Figure 1.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
+        </figcaption>
+      </figure>
 
-        <figure class="figure-card">
-          <div class="figure-top">
-            <div class="figure-label">Interactive Plotly Visualization</div>
-            <div class="figure-type">Embedded HTML</div>
-          </div>
-          <div class="figure-media">
-            <iframe src="visualizations/crime_hourly_interactive1.html" title="Interactive hourly crime visualization"></iframe>
-          </div>
-          <figcaption>
-            <strong>Figure 3.</strong> Interactive view of how crime varies across the hours of the day. Use this figure to inspect when incidents concentrate and whether the daily pattern is broad or sharply peaked. Together with the first two figures, it shows that San Francisco crime varies across time, place, and category rather than following one single simple trend.
-          </figcaption>
-        </figure>
+      <div class="measure">
+        <p class="muted">
+          The data also classifies each report into an incident category. The most frequently recorded categories include:
+        </p>
       </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="measure">
-          <div class="eyebrow">Conclusion</div>
-          <h2>One story, three views</h2>
-          <p class="muted">
-            The citywide trend suggests improvement, but the broader picture is more uneven. The decline is shaped mainly by a few dominant crime categories, the burden of crime remains geographically concentrated, and daily timing patterns reveal that incidents are structured rather than random.
-          </p>
-          <p class="muted">
-            That is the main takeaway of this page: crime in San Francisco declined overall, but understanding that change requires looking beyond one aggregate number.
-          </p>
+      <figure class="figure-card">
+        <div class="figure-top">
+          <div class="figure-label">Map</div>
+          <div class="figure-type">Embedded HTML</div>
         </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="measure">
-          <div class="eyebrow">References</div>
-          <h2>Sources</h2>
-          <ol class="refs">
-            <li>San Francisco Open Data Portal — police incident data.</li>
-          </ol>
+        <div class="figure-media">
+          <iframe src="visualizations/categories.html" title="Top crime categories in San Francisco"></iframe>
         </div>
+        <figcaption>
+          <strong>Figure 2.</strong> The top 15 most frequently reported crime categories in San Francisco. Larceny/theft is by far the most common, followed by assault, vandalism, and burglary. These categories together account for a large share of total incidents, while many other categories occur much less frequently.
+        </figcaption>
+      </figure>
+
+      <div class="measure">
+        <p class="muted">
+          By combining detailed classifications with geographic and temporal indicators, this dataset serves as a valuable tool for understanding patterns, identifying emerging issues, and supporting evidence-based policy development for the residents of San Francisco.
+        </p>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="measure">
+        <h2>COVID-19 Impact on Crime Rates</h2>
+        <p class="muted">
+          The "Annual Incident Counts for Focus Crimes (2003-2025)" graph plot shows an interesting visualization of a shift in societal behaviour during the COVID-19 lockdown. Crimes such as Larceny/Theft, Assault and Missing Person all decreased significantly. However, interestingly, Burglary and Vandalism behaved oppositely, even though the majority of people were significantly more at home than usual. This begs the question of whether previous burglary incident reports were a good representation of the true incident count, or whether the lack of diversity in social interactions increased scepticism and paranoia among the people of San Francisco.
+        </p>
+      </div>
+
+      <figure class="figure-card">
+        <div class="figure-top">
+          <div class="figure-label">Static Chart</div>
+          <div class="figure-type">PNG image</div>
+        </div>
+        <div class="figure-media">
+          <img src="images/counts.png" alt="Annual incident counts for focus crimes from 2003 to 2025">
+        </div>
+        <figcaption>
+          <strong>Supporting chart.</strong> Annual incident counts for selected San Francisco crime categories from 2003 to 2025. Larceny and theft account for by far the largest share of reported incidents, and their post-2020 decline drives much of the overall drop in crime. Smaller categories also shift over time, but they contribute less to the citywide total.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="measure">
+        <div class="eyebrow">Figure 2</div>
+        <h2>Citywide averages hide strong geographic concentration</h2>
+        <p class="muted">
+          The geographical representation of assaults in neighborhoods helps clearly spread awareness of which parts of the city require greater precaution. This map tells the story of "where crime is concentrated" rather than "how much crime", showing clear focus areas instead of only a numerical increase or decrease.
+        </p>
+      </div>
+
+      <figure class="figure-card">
+        <div class="figure-top">
+          <div class="figure-label">Map</div>
+          <div class="figure-type">Embedded HTML</div>
+        </div>
+        <div class="figure-media">
+          <iframe src="visualizations/map.html" title="Map of San Francisco crime concentration"></iframe>
+        </div>
+        <figcaption>
+          <strong>Figure 2.</strong> Geographic view of reported crime in San Francisco. The map shows that incidents are not distributed evenly across the city: a limited set of neighborhoods and districts account for a disproportionate share of activity. This matters because citywide averages can conceal persistent local hotspots.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="interactive" class="section">
+    <div class="container">
+      <div class="measure">
+        <div class="eyebrow">Figure 3</div>
+        <h2>The timing of crime adds another layer to the story</h2>
+        <p class="muted">
+          After seeing the long-run decline and the spatial concentration, the final figure lets the reader interact with one more dimension: time of day. This figure is here to deepen the story, not to restart it. The point is that crime is patterned in time as well as in place.
+        </p>
+      </div>
+
+      <figure class="figure-card">
+        <div class="figure-top">
+          <div class="figure-label">Interactive Plotly Visualization</div>
+          <div class="figure-type">Embedded HTML</div>
+        </div>
+        <div class="figure-media">
+          <iframe src="visualizations/crime_hourly_interactive1.html" title="Interactive hourly crime visualization"></iframe>
+        </div>
+        <figcaption>
+          <strong>Figure 3.</strong> Interactive view of how crime varies across the hours of the day. Use this figure to inspect when incidents concentrate and whether the daily pattern is broad or sharply peaked. Together with the first two figures, it shows that San Francisco crime varies across time, place, and category rather than following one single simple trend.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="measure">
+        <div class="eyebrow">Conclusion</div>
+        <h2>One story, three views</h2>
+        <p class="muted">
+          The citywide trend suggests improvement, but the broader picture is more uneven. The decline is shaped mainly by a few dominant crime categories, the burden of crime remains geographically concentrated, and daily timing patterns reveal that incidents are structured rather than random.
+        </p>
+        <p class="muted">
+          That is the main takeaway of this page: crime in San Francisco declined overall, but understanding that change requires looking beyond one aggregate number.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="measure">
+        <div class="eyebrow">References</div>
+        <h2>Sources</h2>
+        <ol class="refs">
+          <li>San Francisco Open Data Portal — police incident data.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
 
   <footer>
     <div class="container">
